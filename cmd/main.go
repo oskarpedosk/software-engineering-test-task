@@ -25,9 +25,9 @@ func main() {
 	repositories := repository.NewRepository(dbConn.DB())
 	services := service.NewService(repositories)
 	controllers := controller.NewController(services)
-	r := gin.Default()
-	handler.New(r, controllers.Users)
-	if err := r.Run(); err != nil {
+	router := gin.Default()
+	handler.New(router, controllers.Users)
+	if err := router.Run(); err != nil {
 		log.Fatalf("failed to run server: %v", err)
 	}
 }
